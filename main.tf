@@ -40,8 +40,12 @@ resource "aws_elasticsearch_domain" "es" {
   }
 
   domain_endpoint_options {
-    enforce_https       = var.enforce_https
-    tls_security_policy = var.tls_security_policy
+    enforce_https           = var.enforce_https
+    tls_security_policy     = var.tls_security_policy
+
+    custom_endpoint_enabled         = var.custom_endpoint != null ? true : false
+    custom_endpoint                 = var.custom_endpoint
+    custom_endpoint_certificate_arn = var.custom_endpoint_certificate_arn
   }
 
   cluster_config {
@@ -103,4 +107,3 @@ resource "aws_elasticsearch_domain_policy" "es_management_access" {
   domain_name     = local.domain_name
   access_policies = data.aws_iam_policy_document.es_management_access[0].json
 }
-

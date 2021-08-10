@@ -151,3 +151,15 @@ variable "tls_security_policy" {
   type        = string
   default     = null
 }
+
+variable "custom_endpoint" {
+  description = "Custom endpoint of the elasticsearch cluster"
+  type        = string
+  default     = null
+}
+
+variable "custom_endpoint_certificate_arn" {
+  description = "ARN of the ACM certificate to use for the custom endpoint."
+  type        = string
+  default     = null
+}
